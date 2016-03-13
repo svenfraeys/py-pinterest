@@ -55,7 +55,7 @@ class PinterestRest(object):
         """return pins of given user
         """
         
-        url = self.api_url + "/pidgets/users/" + username + "/pins/?total=1"
+        url = self.api_url + "/pidgets/users/" + username + "/pins/?q=2"
         data = self.load_from_url(url)
         return data['pins']
         
@@ -63,7 +63,7 @@ class PinterestRest(object):
         """load
         """
         print('url = %s' % url)
-        req = requests.request("GET", url)
+        req = requests.request("GET", url, data={'n' : 1})
         data = json.loads(req.content)
         pprint(data)
         pinterest_data = data["data"]
